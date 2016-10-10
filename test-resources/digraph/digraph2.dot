@@ -1,0 +1,11 @@
+digraph G {
+  1 [ label="A" foo="bar" ];
+  2 [ label="B" bar="baz" ];
+  3 [ label="C" ];
+  4 ;
+  5 [ baf="bif" bif="bum" ];
+  1 -> 2;
+  2 -> 3;
+  2 -> 4;
+  4 -> 5;
+}
