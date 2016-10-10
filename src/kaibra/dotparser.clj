@@ -16,7 +16,7 @@
   (string/replace v "\"" ""))
 
 (defn- parse-attributes [graph-attributes]
-  (if-let [[_ kvs] (seq (re-matches #"\s*(.+)\s*" graph-attributes))]
+  (if-let [[_ kvs] (seq (re-matches #"\s*(.+)\s*" (or graph-attributes "")))]
     (->> (string/split kvs #" ")
          (map #(string/split % #"\="))
          (reduce (fn [r [n v]]
@@ -26,10 +26,11 @@
 (defn- add-parsed-nodes [nodes graph-line graph-type]
   (or
     (case graph-type
-      :digraph (when-let [[_ graph-id graph-attributes] (seq (re-matches #"\s*([^\s]+)\s+\[(.*)\]\s*" graph-line))]
+      :digraph (when-let [[_ graph-id _ graph-attributes] (seq (re-matches #"\s*([^\s]+)\s+(\[(.*)\])?\s*" graph-line))]
                  (assoc nodes
                    (keyword graph-id)
-                   (into {:children []} (parse-attributes graph-attributes))))
+                   (into {:children []
+                          :id       (keyword graph-id)} (parse-attributes graph-attributes))))
       nodes)
     nodes))
 

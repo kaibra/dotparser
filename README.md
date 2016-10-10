@@ -1,7 +1,7 @@
 # dotparser
 A small clojure library to parse dotfile-strings into a clojure format
 
-`[kaibra/dotparser "0.0.1"]`
+`[kaibra/dotparser "0.0.2"]`
 
 Current support:
 *   Parsing digraphs
@@ -32,16 +32,21 @@ Current support:
 becomes 
 
 ```clj
-{:1 {:label    "A"
+{:1 {:id      :1
+    :label    "A"
     :foo      "bar"
     :children [:2]}
-:2 {:label    "B"
+:2 {:id       :2
+    :label    "B"
     :bar      "baz"
     :children [:3 :4]}
-:3 {:label    "C"
+:3 {:id       :3
+    :label    "C"
     :children []}
-:4 {:children [:5]}
-:5 {:baf      "bif"
+:4 {:id :4
+    :children [:5]}
+:5 {:id        :5
+    :baf      "bif"
     :bif      "bum"
     :children []}}
 
