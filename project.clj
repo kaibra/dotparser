@@ -1,4 +1,4 @@
-(defproject kaibra/dotparser "0.0.2"
+(defproject kaibra/dotparser "0.0.3"
   :description "A tool to parse dotfiles into a clojure structure"
   :url "https://github.com/kaibra/dotparser"
   :license {:name "Eclipse Public License"
